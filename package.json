@@ -1,0 +1,19 @@
+{
+  "name": "codemario-infotech-website",
+  "version": "1.0.0",
+  "description": "Production website and lead inquiry system for Codemario Infotech",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "start:backend": "cd backend && npm start",
+    "preview:frontend": "cd frontend && npm run preview"
+  },
+  "keywords": ["agency", "react", "express", "nodemailer", "typescript"],
+  "author": "Codemario Infotech",
+  "license": "ISC"
+}
