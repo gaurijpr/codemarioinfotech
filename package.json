@@ -3,16 +3,18 @@
   "version": "1.0.0",
   "description": "Production website and lead inquiry system for Codemario Infotech",
   "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "cd frontend && npm run dev",
-    "build:backend": "cd backend && npm run build",
-    "build:frontend": "cd frontend && npm run build",
+    "dev:backend": "npm --workspace=backend run dev",
+    "dev:frontend": "npm --workspace=frontend run dev",
+    "build:backend": "npm --workspace=backend run build",
+    "build:frontend": "npm --workspace=frontend run build",
     "build": "npm run build:backend && npm run build:frontend",
-    "start:backend": "cd backend && npm start",
-    "start": "cd backend && npm start",
-    "preview:frontend": "cd frontend && npm run preview"
+    "start:backend": "npm --workspace=backend start",
+    "start": "npm --workspace=backend start"
   },
   "dependencies": {
     "typescript": "^5.7.2"
