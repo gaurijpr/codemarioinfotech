@@ -1,0 +1,32 @@
+# Enable Symlinks and Disable Directory Browsing
+Options -Indexes +FollowSymLinks
+
+# Set default directory index
+DirectoryIndex frontend/dist/index.html index.php index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve existing file or folder in root
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Serve assets and static files from frontend/dist if they exist
+  RewriteCond %{DOCUMENT_ROOT}/frontend/dist/$1 -f [OR]
+  RewriteCond %{REQUEST_URI} ^/(assets|logo\.png|favicon\.svg|robots\.txt|sitemap\.xml)
+  RewriteRule ^(.*)$ frontend/dist/$1 [L]
+
+  # Route root URL and all SPA paths to frontend/dist/index.html
+  RewriteRule ^$ frontend/dist/index.html [L]
+  RewriteRule ^(.*)$ frontend/dist/index.html [L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

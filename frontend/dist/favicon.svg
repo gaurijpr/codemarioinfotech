@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <rect width="100" height="100" rx="20" fill="#000000"/>
+  <!-- Modern Geometric CM Monogram -->
+  <path d="M 32 32 H 44 C 47 32 49 34 49 37 V 39 C 49 41 47 43 44 43 H 34 V 57 H 44 C 47 57 49 59 49 61 V 63 C 49 66 47 68 44 68 H 32 C 27.5 68 24 64.5 24 60 V 40 C 24 35.5 27.5 32 32 32 Z" fill="#FFFFFF"/>
+  <path d="M 54 32 H 60 L 67 52 L 74 32 H 80 V 68 H 73 V 46 L 68 60 H 66 L 61 46 V 68 H 54 V 32 Z" fill="#FFFFFF"/>
+</svg>

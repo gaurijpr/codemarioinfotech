@@ -7,8 +7,11 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
 const contactRoutes_js_1 = __importDefault(require("./routes/contactRoutes.js"));
 const errorHandler_js_1 = require("./middleware/errorHandler.js");
+const frontendDist = path_1.default.resolve(__dirname, '../../frontend/dist');
 // Load environment variables
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -47,20 +50,32 @@ app.use((req, res, next) => {
 });
 // API Routes
 app.use('/api', contactRoutes_js_1.default);
-// Root informational endpoint
-app.get('/', (req, res) => {
-    res.json({
-        name: 'Codemario Infotech API',
-        status: 'online',
-        version: '1.0.0',
-        documentation: '/api/health',
+// Serve static frontend files if present (e.g. unified deployment)
+if (fs_1.default.existsSync(frontendDist)) {
+    app.use(express_1.default.static(frontendDist));
+    app.get('*', (req, res, next) => {
+        if (req.path.startsWith('/api')) {
+            return next();
+        }
+        res.sendFile(path_1.default.join(frontendDist, 'index.html'));
     });
-});
-// 404 Handler
-app.use((req, res) => {
+}
+else {
+    // Root informational endpoint when running standalone API
+    app.get('/', (req, res) => {
+        res.json({
+            name: 'Codemario Infotech API',
+            status: 'online',
+            version: '1.0.0',
+            documentation: '/api/health',
+        });
+    });
+}
+// 404 Handler for API routes
+app.use('/api', (req, res) => {
     res.status(404).json({
         success: false,
-        message: `Route ${req.originalUrl} not found.`,
+        message: `API Route ${req.originalUrl} not found.`,
     });
 });
 // Global Error Handler

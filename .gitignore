@@ -3,7 +3,6 @@ node_modules/
 */node_modules/
 
 # Production builds
-frontend/dist/
 dist-ssr/
 */dist-ssr/
 
