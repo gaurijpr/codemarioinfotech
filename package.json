@@ -11,9 +11,19 @@
     "build:frontend": "cd frontend && npm run build",
     "build": "npm run build:backend && npm run build:frontend",
     "start:backend": "cd backend && npm start",
+    "start": "cd backend && npm start",
     "preview:frontend": "cd frontend && npm run preview"
   },
-  "keywords": ["agency", "react", "express", "nodemailer", "typescript"],
+  "dependencies": {
+    "typescript": "^5.7.2"
+  },
+  "keywords": [
+    "agency",
+    "react",
+    "express",
+    "nodemailer",
+    "typescript"
+  ],
   "author": "Codemario Infotech",
   "license": "ISC"
 }
