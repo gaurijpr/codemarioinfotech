@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ServicesSection } from './components/ServicesSection';
@@ -14,53 +15,65 @@ import { InquiryForm } from './components/InquiryForm';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 
-export const App: React.FC = () => {
+const MainContent: React.FC = () => {
+  const { themeMode } = useTheme();
+
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col selection:bg-white selection:text-black">
-      {/* 1. Sticky Navigation Bar (Black Glassmorphism) */}
+    <div className={`min-h-screen flex flex-col selection:bg-[#684DF4] selection:text-white ${
+      themeMode === 'hok-home3' ? 'bg-[#030308] text-white' : 'bg-black text-white'
+    }`}>
+      {/* 1. Sticky Navigation Bar */}
       <Navbar />
 
       <main id="main-content" className="flex-1">
-        {/* 2. Hero Section (Deep Black with White Highlights) */}
+        {/* 2. Hero Section */}
         <HeroSection />
 
-        {/* 3. Services Section (Dark Studio Surface #0D0D0D) */}
+        {/* 3. Services Section */}
         <ServicesSection />
 
-        {/* 4. Why Codemario Infotech (STUNNING CONTRASTING WHITE SECTION) */}
+        {/* 4. Why Codemario Infotech */}
         <WhyUsSection />
 
-        {/* 5. Our Expertise / Capabilities (Deep Black with Interactive Cards) */}
+        {/* 5. Our Expertise / Capabilities */}
         <ExpertiseSection />
 
-        {/* 6. Process Section (Dark Minimalist Timeline #0A0A0A) */}
+        {/* 6. Process Section */}
         <ProcessSection />
 
-        {/* 7. Industries / Who We Help (Dark Architectural Grid) */}
+        {/* 7. Industries / Who We Help */}
         <IndustriesSection />
 
-        {/* 8. Portfolio / Work Showcase (Pure Black with High-Contrast Specs) */}
+        {/* 8. Portfolio / Work Showcase */}
         <PortfolioSection />
 
-        {/* 9. Results / Trust Section (STUNNING CONTRASTING WHITE SECTION) */}
+        {/* 9. Results / Trust Section */}
         <ResultsSection />
 
-        {/* 10. About Section (Deep Dark Studio Aesthetic #0A0A0A) */}
+        {/* 10. About Section */}
         <AboutSection />
 
-        {/* 11. Call To Action (STUNNING CONTRASTING WHITE SECTION) */}
+        {/* 11. Call To Action */}
         <CtaSection />
 
-        {/* 12. Inquiry Form (Deep Black with High-Contrast Inputs & Button) */}
+        {/* 12. Inquiry Form */}
         <InquiryForm />
 
-        {/* 13. Direct Contact Section (Dark Studio #0D0D0D) */}
+        {/* 13. Direct Contact Section */}
         <ContactSection />
       </main>
 
-      {/* 14. Footer (Deep Black with Crisp White Typography) */}
+      {/* 14. Footer */}
       <Footer />
     </div>
+  );
+};
+
+export const App: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <MainContent />
+    </ThemeProvider>
   );
 };
 
